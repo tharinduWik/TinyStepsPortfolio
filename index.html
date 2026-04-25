@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TinySteps — AI-Powered Infant Growth Monitoring System</title>
+  <meta name="description"
+    content="TinySteps is a four-module AI infant monitoring platform — growth forecasting, ASD screening, cry analysis and postpartum maternal health, powered by LSTM and XGBoost models.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="motion-med">
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="logo-loader">
+      <div class="ring"></div>
+      <span>TinySteps</span>
+    </div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Ambient background -->
+  <div class="bg-fx"></div>
+  <div class="grain"></div>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ============================================================
+       DOCK NAV
+       ============================================================ -->
+  <nav class="dock-nav">
+    <a href="#home" class="dk-brand">
+      <span class="mk">T</span>
+      <span>TinySteps</span>
+    </a>
+    <div class="dk-items">
+      <a href="#home" class="dk-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="#about" class="dk-item"><i class="fa-solid fa-baby"></i><span>About</span></a>
+      <a href="#explore" class="dk-item"><i class="fa-solid fa-layer-group"></i><span>Modules</span></a>
+      <a href="#demo" class="dk-item"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Try AI</span></a>
+      <button class="dk-menu-btn" data-popover="moreMenu" aria-label="More"><i
+          class="fa-solid fa-ellipsis"></i></button>
+    </div>
+    <a href="#contact" class="dk-cta">Get in touch</a>
+  </nav>
+
+  <div class="dk-popover" id="moreMenu">
+    <a href="#research"><i class="fa-solid fa-book-open"></i>Research</a>
+    <a href="#objectives"><i class="fa-solid fa-bullseye"></i>Objectives</a>
+    <a href="#methodology"><i class="fa-solid fa-flask"></i>Methodology</a>
+    <a href="#technology"><i class="fa-solid fa-microchip"></i>Technology</a>
+    <a href="#roadmap"><i class="fa-solid fa-road"></i>Roadmap</a>
+    <a href="#documents"><i class="fa-solid fa-folder-open"></i>Documents</a>
+    <a href="#team"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="#" id="tweaksBtn"><i class="fa-solid fa-sliders"></i>Tweaks</a>
+  </div>
+
+  <!-- Mobile tabbar -->
+  <nav class="tabbar">
+    <div class="tabbar-inner">
+      <a href="#home" class="active"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="#explore"><i class="fa-solid fa-layer-group"></i>Modules</a>
+      <a href="#demo"><i class="fa-solid fa-wand-magic-sparkles"></i>AI</a>
+      <a href="#team"><i class="fa-solid fa-users"></i>Team</a>
+      <a href="#contact"><i class="fa-solid fa-envelope"></i>Contact</a>
+    </div>
+  </nav>
+
+  <!-- Tweaks Panel -->
+  <div class="tweaks-panel" id="tweaksPanel">
+    <h5><i class="fa-solid fa-sliders"></i>Tweak the design</h5>
+    <div class="tweaks-group">
+      <label>Hero variant</label>
+      <div class="tweaks-opts">
+        <button data-variant="v1" class="on">Dashboard</button>
+        <button data-variant="v2">Editorial</button>
+        <button data-variant="v3">Orbit</button>
+      </div>
+    </div>
+    <div class="tweaks-group">
+      <label>Accent color</label>
+      <div class="tweaks-swatches">
+        <button data-accent="coral" class="on" style="background:#f48b7e" aria-label="Coral"></button>
+        <button data-accent="gold" style="background:#e8b86a" aria-label="Soft Gold"></button>
+        <button data-accent="ocean" style="background:#4d8fb0" aria-label="Clinical Blue"></button>
+        <button data-accent="lotus" style="background:#c76ea8" aria-label="Rose"></button>
+        <button data-accent="jungle" style="background:#6aa888" aria-label="Sage"></button>
+      </div>
+    </div>
+    <div class="tweaks-group">
+      <label>Motion intensity</label>
+      <div class="tweaks-opts">
+        <button data-motion="low">Calm</button>
+        <button data-motion="med" class="on">Balanced</button>
+        <button data-motion="high">Lively</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <header class="hero variant-v1" id="home">
+
+    <!-- Variant 1: Dashboard -->
+    <div class="container hero-v1">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="badge-live reveal">
+            <span class="pulse"></span>
+            <span>Research · University of Colombo</span>
+            <span class="divider-v"></span>
+            <span>4-module pediatric AI</span>
+          </div>
+
+          <h1 class="display reveal">
+            <span class="l">Every tiny step,</span>
+            <span class="l">a <span class="typed-wrap"><em id="typedText">milestone</em><span
+                  class="typed-cursor"></span></span></span>
+          </h1>
+
+          <p class="lede-big reveal">
+            TinySteps is an AI-powered infant monitoring platform integrating
+            <span class="serif">growth forecasting</span>, ASD screening, cry analysis and postpartum maternal health —
+            each trained on a purpose-specific dataset and clinically informed.
+          </p>
+
+          <div class="hero-ctas reveal">
+            <a href="#demo" class="btn-x btn-primary-x">
+              <span class="bx-shine"></span>
+              <span class="bx-inner"><i class="fa-solid fa-wand-magic-sparkles"></i>Try the AI <span
+                  class="arrow">→</span></span>
+            </a>
+            <a href="#research" class="btn-x btn-ghost-x">
+              <span class="bx-inner"><span class="play-ic"><i class="fa-solid fa-book-open"></i></span>Read the
+                paper</span>
+            </a>
+          </div>
+
+          <div class="live-stats reveal">
+            <div class="stat-x">
+              <div class="sx-top"><i class="fa-solid fa-chart-line"></i><span class="n"><span
+                    data-count="9">0</span>d</span></div>
+              <div class="sx-lbl">Growth-risk lead time</div>
+            </div>
+            <div class="stat-x">
+              <div class="sx-top"><i class="fa-solid fa-brain"></i><span class="n"><span
+                    data-count="91">0</span>%</span></div>
+              <div class="sx-lbl">ASD screening AUC</div>
+            </div>
+            <div class="stat-x">
+              <div class="sx-top"><i class="fa-solid fa-waveform"></i><span class="n"><span
+                    data-count="87">0</span>%</span></div>
+              <div class="sx-lbl">Cry-class accuracy</div>
+            </div>
+            <div class="stat-x">
+              <div class="sx-top"><i class="fa-solid fa-heart-pulse"></i><span class="n"><span
+                    data-count="4">0</span></span></div>
+              <div class="sx-lbl">Clinical modules</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module stage (phone removed; orbit of clinical cards) -->
+        <div class="phone-stage reveal reveal-r">
+          <div class="ring-orbit ro-a"></div>
+          <div class="ring-orbit ro-b"></div>
+
+          <!-- Floating clinical polaroids -->
+          <div class="polaroid pol-1">
+            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop"
+              alt="Newborn resting">
+            <div>Growth curve</div>
+          </div>
+          <div class="polaroid pol-2">
+            <img src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?q=80&w=400&auto=format&fit=crop"
+              alt="Infant feet">
+            <div>Milestones</div>
+          </div>
+          <div class="polaroid pol-3">
+            <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?q=80&w=400&auto=format&fit=crop"
+              alt="Infant care">
+            <div>Maternal care</div>
+          </div>
+
+          <!-- Orbit chips (module highlights) -->
+          <div class="orbit-chip oc-1"><i class="fa-solid fa-chart-line"></i>
+            <div><strong>WAZ trend · stable</strong><small>LSTM · 14-day horizon</small></div>
+          </div>
+          <div class="orbit-chip oc-2"><i class="fa-solid fa-brain"></i>
+            <div><strong>Q-CHAT score</strong><small>Stage-1 · typical 0.92</small></div>
+          </div>
+          <div class="orbit-chip oc-3"><i class="fa-solid fa-waveform"></i>
+            <div><strong>Cry: hunger 0.86</strong><small>Audio + facial fusion</small></div>
+          </div>
+          <div class="orbit-chip oc-4"><i class="fa-solid fa-heart-pulse"></i>
+            <div><strong>Postpartum · low risk</strong><small>Ridge + RF ensemble</small></div>
+          </div>
+
+          <!-- Central hero visual card (replaces phone mock) -->
+          <div class="hero-visual">
+            <div class="hv-glow"></div>
+            <div class="hv-frame">
+              <div class="hv-hero-img">
+                <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=800&auto=format&fit=crop"
+                  alt="Newborn sleeping">
+                <div class="hv-overlay">
+                  <span class="hv-tag">TinySteps · v0.9</span>
+                  <h3>Day 42 · Healthy trajectory</h3>
+                </div>
+              </div>
+              <div class="hv-body">
+                <div class="hv-metric">
+                  <div class="hv-k">WAZ</div>
+                  <div class="hv-v">-0.42</div>
+                  <div class="hv-bar"><span style="width:64%;background:linear-gradient(90deg,#6aa888,#4d8fb0)"></span>
+                  </div>
+                </div>
+                <div class="hv-metric">
+                  <div class="hv-k">HAZ</div>
+                  <div class="hv-v">-0.18</div>
+                  <div class="hv-bar"><span style="width:72%;background:linear-gradient(90deg,#9a92e3,#4d8fb0)"></span>
+                  </div>
+                </div>
+                <div class="hv-metric">
+                  <div class="hv-k">Risk 7d</div>
+                  <div class="hv-v">8%</div>
+                  <div class="hv-bar"><span style="width:14%;background:linear-gradient(90deg,#e8b86a,#f48b7e)"></span>
+                  </div>
+                </div>
+                <div class="hv-note"><i class="fa-solid fa-circle-check"></i>No anomaly · continue current feeding plan.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant 2: Editorial full-bleed -->
+    <div class="hero-v2">
+      <div class="hero-v2-media in">
+        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1600&auto=format&fit=crop"
+          alt="Newborn portrait">
+        <div class="float-chip"><i class="fa-solid fa-baby"></i>Day 42 · WAZ -0.42 · stable trajectory</div>
+      </div>
+      <div class="hero-v2-copy">
+        <div class="v2-meta"><span>TinySteps</span><span class="dot"></span><span>Pediatric AI · 2026</span></div>
+        <h1 class="display">A pediatric mind,<br><span class="hl">for the most sensitive window of life.</span></h1>
+        <p class="lede-big">An intelligent companion that forecasts growth trajectories, flags developmental concerns,
+          interprets infant cries and supports maternal postpartum recovery — all in one mobile-deployable system.</p>
+        <div class="hero-ctas">
+          <a href="#demo" class="btn-x btn-primary-x"><span class="bx-inner"><i
+                class="fa-solid fa-wand-magic-sparkles"></i>Try the AI <span class="arrow">→</span></span></a>
+          <a href="#about" class="btn-x btn-ghost-x"><span class="bx-inner"><span class="play-ic"><i
+                  class="fa-solid fa-play"></i></span>The story</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant 3: Orbit / Modules compass -->
+    <div class="container hero-v3">
+      <div class="v3-wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">The TinySteps Project</span>
+          <h1 class="display">Four modules,<br><span class="hl-ocean">one pediatric companion.</span></h1>
+          <p class="lede-big">From longitudinal growth forecasting to Q-CHAT-based developmental screening — TinySteps
+            brings interpretable machine learning to the caregiver's pocket.</p>
+          <div class="hero-ctas">
+            <a href="#explore" class="btn-x btn-primary-x"><span class="bx-inner"><i
+                  class="fa-solid fa-layer-group"></i>Explore modules <span class="arrow">→</span></span></a>
+            <a href="#demo" class="btn-x btn-ghost-x"><span class="bx-inner"><i
+                  class="fa-solid fa-wand-magic-sparkles"></i>Try the AI</span></a>
+          </div>
+        </div>
+        <div class="v3-compass">
+          <svg class="v3-compass-svg" viewBox="-100 -100 200 200">
+            <circle class="compass-ring" r="95" />
+            <circle class="compass-ring" r="75" />
+            <circle class="compass-ring" r="55" />
+            <line class="compass-tick" x1="0" y1="-95" x2="0" y2="-88" />
+            <line class="compass-tick" x1="0" y1="95" x2="0" y2="88" />
+            <line class="compass-tick" x1="-95" y1="0" x2="-88" y2="0" />
+            <line class="compass-tick" x1="95" y1="0" x2="88" y2="0" />
+            <!-- Stylized infant silhouette (heart) -->
+            <path class="sl-stroke"
+              d="M 0 -40 C -22 -62, -52 -50, -52 -18 C -52 12, -18 34, 0 48 C 18 34, 52 12, 52 -18 C 52 -50, 22 -62, 0 -40 Z" />
+            <path class="sl-island"
+              d="M 0 -40 C -22 -62, -52 -50, -52 -18 C -52 12, -18 34, 0 48 C 18 34, 52 12, 52 -18 C 52 -50, 22 -62, 0 -40 Z" />
+          </svg>
+          <div class="v3-pin" style="top:22%;left:70%">
+            <div class="v3-pin-label">Growth</div>
+          </div>
+          <div class="v3-pin" style="top:52%;left:82%">
+            <div class="v3-pin-label">ASD</div>
+          </div>
+          <div class="v3-pin" style="top:78%;left:50%">
+            <div class="v3-pin-label">Cry</div>
+          </div>
+          <div class="v3-pin" style="top:52%;left:18%">
+            <div class="v3-pin-label">Postpartum</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint"><span>Scroll to explore</span>
+      <div class="mouse"></div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       TICKER
+       ============================================================ -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span><i class="fa-solid fa-chart-line"></i>Growth Forecasting</span>
+      <span><i class="fa-solid fa-brain"></i>ASD Screening</span>
+      <span><i class="fa-solid fa-waveform"></i>Cry Analysis</span>
+      <span><i class="fa-solid fa-heart-pulse"></i>Postpartum Health</span>
+      <span><i class="fa-solid fa-microchip"></i>LSTM Forecaster</span>
+      <span><i class="fa-solid fa-cube"></i>XGBoost Risk</span>
+      <span><i class="fa-solid fa-layer-group"></i>Audio-Visual Fusion</span>
+      <span><i class="fa-solid fa-stethoscope"></i>Ridge · Random Forest</span>
+      <span><i class="fa-solid fa-baby"></i>0–209 day coverage</span>
+      <span><i class="fa-solid fa-flask"></i>Q-CHAT Instrument</span>
+      <span><i class="fa-solid fa-chart-column"></i>WAZ Trajectory</span>
+      <span><i class="fa-solid fa-shield-heart"></i>Clinical Safety</span>
+      <!-- repeat for seamless loop -->
+      <span><i class="fa-solid fa-chart-line"></i>Growth Forecasting</span>
+      <span><i class="fa-solid fa-brain"></i>ASD Screening</span>
+      <span><i class="fa-solid fa-waveform"></i>Cry Analysis</span>
+      <span><i class="fa-solid fa-heart-pulse"></i>Postpartum Health</span>
+      <span><i class="fa-solid fa-microchip"></i>LSTM Forecaster</span>
+      <span><i class="fa-solid fa-cube"></i>XGBoost Risk</span>
+      <span><i class="fa-solid fa-layer-group"></i>Audio-Visual Fusion</span>
+      <span><i class="fa-solid fa-stethoscope"></i>Ridge · Random Forest</span>
+      <span><i class="fa-solid fa-baby"></i>0–209 day coverage</span>
+      <span><i class="fa-solid fa-flask"></i>Q-CHAT Instrument</span>
+      <span><i class="fa-solid fa-chart-column"></i>WAZ Trajectory</span>
+      <span><i class="fa-solid fa-shield-heart"></i>Clinical Safety</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ABOUT / PROBLEM
+       ============================================================ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">About TinySteps</span>
+        <h2 class="title">Infant monitoring is <span class="hl">fragmented by design.</span></h2>
+        <p class="lede">The first two years of life are the most sensitive window for physical and neurodevelopmental
+          growth — yet routine monitoring is limited to infrequent clinical visits and single-domain apps that address
+          one health dimension at a time.</p>
+      </div>
+
+      <div class="prob-grid">
+        <div class="prob-card reveal reveal-l">
+          <span class="badge"><i class="fa-solid fa-triangle-exclamation"></i>The Problem</span>
+          <h3>Simple charts, single-domain screens, unvalidated advice.</h3>
+          <p>Existing mobile health applications for infant care fall into three categories: simple growth chart
+            visualisation tools, single-domain screening instruments, and unvalidated caregiver advice platforms. None
+            of these integrates predictive analytics, behavioural assessment and maternal health monitoring into a
+            unified, AI-driven system.</p>
+          <p>Caregivers and clinicians alike are left stitching signals together by hand — <strong>missed anomalies,
+              late interventions, inconsistent follow-up.</strong></p>
+        </div>
+        <div class="prob-card solution reveal reveal-r">
+          <span class="badge"><i class="fa-solid fa-sparkles"></i>Our Solution</span>
+          <h3>Four clinically-informed modules, one mobile platform.</h3>
+          <p>TinySteps is a four-module AI infant monitoring system: LSTM-based growth forecasting with XGBoost risk
+            prediction, a two-stage Q-CHAT ASD screening pipeline, a multi-modal audio-visual cry analyser, and an
+            ensemble postpartum maternal health assessor.</p>
+          <p>Every model is trained on a <span class="hl-gold">purpose-specific dataset</span>, deployed through a
+            FastAPI backend with a React Native mobile frontend, and lightweight enough for consumer mobile devices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WIDGET — Interactive Module Map
+       ============================================================ -->
+  <section class="section section-widgets" id="explore">
+    <div class="container-wide">
+      <div class="section-head reveal">
+        <span class="eyebrow">Four integrated modules</span>
+        <h2 class="title">Tap any module, <span class="hl-ocean">see the science inside.</span></h2>
+        <p class="lede">Each TinySteps module is trained on a distinct, purpose-specific dataset reflecting the
+          independent nature of the four health domains it serves.</p>
+      </div>
+
+      <div class="sl-map-wrap reveal">
+        <div class="sl-map-stage" id="slMap">
+          <svg class="sl-svg" viewBox="-100 -100 200 200" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <radialGradient id="islandGrad" cx="40%" cy="30%">
+                <stop offset="0%" stop-color="#ffb7a8" />
+                <stop offset="100%" stop-color="#f48b7e" />
+              </radialGradient>
+            </defs>
+            <path class="island-halo"
+              d="M 0 -62 C -34 -92, -82 -76, -82 -24 C -82 20, -26 54, 0 72 C 26 54, 82 20, 82 -24 C 82 -76, 34 -92, 0 -62 Z" />
+            <path class="island"
+              d="M 0 -62 C -34 -92, -82 -76, -82 -24 C -82 20, -26 54, 0 72 C 26 54, 82 20, 82 -24 C 82 -76, 34 -92, 0 -62 Z"
+              fill="url(#islandGrad)" />
+          </svg>
+          <div id="slPins" style="position:absolute;inset:28px"></div>
+        </div>
+        <div class="sl-detail" id="slDetail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESEARCH / LITERATURE
+       ============================================================ -->
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Literature Review</span>
+        <h2 class="title">The foundation of <span class="hl">our research.</span></h2>
+        <p class="lede">A survey of pediatric AI, developmental screening, cry analysis and postpartum monitoring — and
+          the gaps each domain leaves unanswered.</p>
+      </div>
+
+      <div class="lit-wrap">
+        <article class="lit-card reveal">
+          <div class="lit-head"><span class="lit-num">01</span>
+            <h3 class="lit-title">Growth monitoring & predictive analytics</h3>
+          </div>
+          <p class="lit-body">Recent machine learning approaches apply Random Forests and gradient boosting to
+            malnutrition classification (Pérez-Rosales et al., 2021) and childhood stunting prediction (Hasan et al.,
+            2020). However, most focus on cross-sectional snapshots rather than longitudinal trajectory modelling. LSTM
+            networks have demonstrated value in time-series pediatric health monitoring (Che et al., 2018) but prior
+            deployments use large architectures unsuitable for mobile applications.</p>
+          <details class="lit-refs">
+            <summary>References</summary>
+            <ol>
+              <li>Pérez-Rosales, A. K. et al. (2021). Machine learning for malnutrition classification in children under
+                five. PLoS ONE.</li>
+              <li>Hasan, T. et al. (2020). Prediction of childhood stunting using machine learning. BMC Public Health.
+              </li>
+              <li>Che, H. et al. (2018). Recurrent neural networks for multivariate time series with missing values.
+                Scientific Reports.</li>
+            </ol>
+          </details>
+        </article>
+
+        <article class="lit-card reveal">
+          <div class="lit-head"><span class="lit-num">02</span>
+            <h3 class="lit-title">ASD screening instruments & ML layers</h3>
+          </div>
+          <p class="lit-body">ASD screening tools have been extensively studied in clinical research using the M-CHAT
+            (Robins et al., 2001) and Q-CHAT (Allison et al., 2008) instruments. Mobile adaptations exist but rarely
+            incorporate machine learning classification layers for borderline cases. Prior work (Thabtah et al., 2019)
+            has shown that combining behavioural feature vectors with gradient boosting classifiers can improve
+            screening sensitivity in community settings.</p>
+          <details class="lit-refs">
+            <summary>References</summary>
+            <ol>
+              <li>Robins, D. S. et al. (2001). Screening for autism in toddlers. Dev. Med. Child Neurol.</li>
+              <li>Allison, T. et al. (2008). The Q-CHAT (Quantitative Checklist for Autism in Toddlers). JADD.</li>
+              <li>Thabtah, F. et al. (2019). A machine learning autism classification based on logistic regression.
+                Health Inf. Sci. Syst.</li>
+            </ol>
+          </details>
+        </article>
+
+        <article class="lit-card reveal">
+          <div class="lit-head"><span class="lit-num">03</span>
+            <h3 class="lit-title">Multi-modal infant cry analysis</h3>
+          </div>
+          <p class="lit-body">Infant cry analysis has been approached through audio classification using CNNs on mel
+            spectrograms (Chang et al., 2019) and SVMs on MFCC features (Lavner et al., 2018). Multi-modal systems
+            combining audio and facial expression cues have shown improved accuracy (Zhang et al., 2022) but have not
+            previously been integrated into a unified infant monitoring application.</p>
+          <details class="lit-refs">
+            <summary>References</summary>
+            <ol>
+              <li>Chang, C. Y. et al. (2019). Infant cry classification using deep learning. ICASSP.</li>
+              <li>Lavner, S. et al. (2018). Infant cry analysis and detection. Comput. Biol. Med.</li>
+              <li>Zhang, Y. et al. (2022). Multi-modal infant cry recognition combining audio and facial features. IEEE
+                Trans. Affect. Comput.</li>
+            </ol>
+          </details>
+        </article>
+
+        <article class="lit-card reveal">
+          <div class="lit-head"><span class="lit-num">04</span>
+            <h3 class="lit-title">Postpartum maternal recovery</h3>
+          </div>
+          <p class="lit-body">Postpartum health monitoring has received limited attention in AI-assisted mobile health
+            (Declercq et al., 2007), despite the substantial burden of postpartum complications including perineal
+            trauma, C-section recovery, and musculoskeletal pain. Ensemble methods such as Random Forests have been
+            applied to postpartum depression screening (Rai et al., 2021) but not to physical recovery risk
+            stratification across multiple domains simultaneously.</p>
+          <details class="lit-refs">
+            <summary>References</summary>
+            <ol>
+              <li>Declercq, S. et al. (2007). Listening to mothers: experiences of women after childbirth. J. Midwifery
+                Womens Health.</li>
+              <li>Rai, M. et al. (2021). Postpartum depression prediction using machine learning. Inform. Med. Unlocked.
+              </li>
+            </ol>
+          </details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESEARCH GAPS
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Research Gaps</span>
+        <h2 class="title">Four gaps, <span class="hl-gold">one unified answer.</span></h2>
+      </div>
+
+      <div class="gap-grid">
+        <div class="gap-card reveal">
+          <div class="ico"><i class="fa-solid fa-chart-line"></i></div>
+          <h4>Longitudinal blind spot</h4>
+          <p>Existing growth apps visualise WHO charts but do not forecast. TinySteps applies a lightweight LSTM (23,298
+            params) for 7-day weight and height forecasting.</p>
+        </div>
+        <div class="gap-card reveal">
+          <div class="ico"><i class="fa-solid fa-brain"></i></div>
+          <h4>Borderline ASD cases</h4>
+          <p>Single-pass screeners miss nuance. Our two-stage Q-CHAT pipeline escalates borderline (confidence&lt;0.70)
+            cases to an XGBoost second-opinion model.</p>
+        </div>
+        <div class="gap-card reveal">
+          <div class="ico"><i class="fa-solid fa-waveform"></i></div>
+          <h4>Audio-only cry engines</h4>
+          <p>Noisy environments break audio-only classifiers. TinySteps fuses MFCC audio with facial pain CNN features
+            through a calibrated fusion model.</p>
+        </div>
+        <div class="gap-card reveal">
+          <div class="ico"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h4>Maternal recovery neglect</h4>
+          <p>No mobile AI simultaneously covers back/pelvic pain, perineal trauma and C-section recovery. TinySteps does
+            — with per-domain models.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       OBJECTIVES
+       ============================================================ -->
+  <section class="section" id="objectives">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Objectives</span>
+        <h2 class="title">Five pillars, <span class="hl-ocean">one platform.</span></h2>
+        <p class="lede">The TinySteps objectives define the full scope of the project — from predictive growth analytics
+          to behavioural screening and maternal recovery.</p>
+      </div>
+
+      <div class="obj-list">
+        <div class="obj-row reveal">
+          <div class="obj-num"><span>01</span></div>
+          <div class="obj-copy">
+            <h4>Lightweight longitudinal forecasting</h4>
+            <p>Deploy a single-layer LSTM (23,298 params, 0.089 MB) to predict next-day weight and height change from a
+              7-day sliding window of 24 features — mobile-deployable on consumer devices.</p>
+          </div>
+        </div>
+        <div class="obj-row reveal">
+          <div class="obj-num"><span>02</span></div>
+          <div class="obj-copy">
+            <h4>Early risk detection at low false-alarm cost</h4>
+            <p>An XGBoost classifier with scale_pos_weight=5.85 flags 7-day WAZ crossings of -2.0 with AUC 0.9499 and
+              only 1.63 false alarms per infant — three-fold fewer than the RF baseline.</p>
+          </div>
+        </div>
+        <div class="obj-row reveal">
+          <div class="obj-num"><span>03</span></div>
+          <div class="obj-copy">
+            <h4>Two-stage developmental screening</h4>
+            <p>Stage-1 logistic regression on 25 Q-CHAT features followed by Stage-2 XGBoost for borderline cases
+              (confidence&lt;0.70), reaching macro AUC 0.912 and at-risk sensitivity 0.88.</p>
+          </div>
+        </div>
+        <div class="obj-row reveal">
+          <div class="obj-num"><span>04</span></div>
+          <div class="obj-copy">
+            <h4>Multi-modal cry interpretation</h4>
+            <p>Combine MFCC-based audio ensembles with a facial-pain CNN through a calibrated fusion model — 87.4%
+              overall accuracy, versus 79.2% audio-only and 73.6% facial-only.</p>
+          </div>
+        </div>
+        <div class="obj-row reveal">
+          <div class="obj-num"><span>05</span></div>
+          <div class="obj-copy">
+            <h4>Postpartum three-domain support</h4>
+            <p>Ridge regression for back/pelvic pain (MAE 0.82, R²=0.74), Random Forests for perineal trauma (AUC 0.891)
+              and C-section recovery (AUC 0.876) — each with stratified recommendations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       METHODOLOGY
+       ============================================================ -->
+  <section class="section" id="methodology">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Methodology</span>
+        <h2 class="title">How we built <span class="hl-ocean">TinySteps.</span></h2>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-visual reveal reveal-l">
+          <div class="mv-card">
+            <div class="mv-head">
+              <div class="mv-av"><i class="fa-solid fa-baby"></i></div>
+              <div>
+                <strong>Day 42 · Nila</strong>
+                <small>Female · 3.98 kg · 53.2 cm</small>
+              </div>
+            </div>
+            <div class="mock-card">
+              <div class="mci t"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="mt">LSTM forecast<small>+18 g / day · cumulative D14 89.0 g</small></div>
+            </div>
+            <div class="mock-card">
+              <div class="mci r"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="mt">Risk 7-day<small>XGBoost 2A · 0.08 probability · lead 9.1d</small></div>
+            </div>
+            <div class="mock-card">
+              <div class="mci s"><i class="fa-solid fa-waveform"></i></div>
+              <div class="mt">Cry classification<small>Audio+facial fusion · hunger 0.86</small></div>
+            </div>
+            <div class="mock-card">
+              <div class="mci u"><i class="fa-solid fa-heart-pulse"></i></div>
+              <div class="mt">Postpartum check<small>Ridge pain 1.4/10 · RF perineal low</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="method-copy reveal reveal-r">
+          <p>TinySteps follows a modular client-server architecture. The backend is implemented in Python using FastAPI,
+            with four dedicated routers — growth_router, asd_router, cry_router, postpartum_router — each serving its
+            module's endpoints. All models are loaded at server startup as persistent in-memory objects. MongoDB stores
+            longitudinal infant records, behavioural logs and maternal assessments.</p>
+          <ul class="method-list">
+            <li><span class="mli-num">1</span><span class="mli-tx"><b>Discover.</b> Ground research on pediatric
+                workflows, caregiver needs and clinical screening practice; align with WHO Child Growth
+                Standards.</span></li>
+            <li><span class="mli-num">2</span><span class="mli-tx"><b>Curate.</b> Four purpose-specific datasets —
+                synthetic Sri Lankan longitudinal growth (600 infants), Q-CHAT cohort (1,200), multi-modal cry corpus
+                (4,500), postpartum survey (850 mothers).</span></li>
+            <li><span class="mli-num">3</span><span class="mli-tx"><b>Design.</b> Single-layer LSTM for forecasting,
+                XGBoost for risk, logistic+XGBoost two-stage for ASD, audio-visual fusion for cry, Ridge+RF ensembles
+                for postpartum.</span></li>
+            <li><span class="mli-num">4</span><span class="mli-tx"><b>Develop.</b> React Native (Expo) frontend ·
+                FastAPI backend · MongoDB persistence · models loaded as in-memory objects at startup.</span></li>
+            <li><span class="mli-num">5</span><span class="mli-tx"><b>Deliver.</b> Sequential pipeline that aggregates
+                risk, anomaly and forecast into a single backend response to minimise round-trips.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TECHNOLOGY — Orbit
+       ============================================================ -->
+  <section class="section" id="technology">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Technology Stack</span>
+        <h2 class="title">The engine under <span class="hl">the cradle.</span></h2>
+        <p class="lede">Mobile-deployable, production-grade, purpose-fit — every model lightweight enough to run
+          in-memory at server startup.</p>
+      </div>
+
+      <div class="tech-orbit reveal">
+        <div class="to-ring to-r1"></div>
+        <div class="to-ring to-r2"></div>
+        <div class="to-center">TinySteps<br>Core</div>
+        <div class="tchip" style="top:50%;left:5%"><i class="fa-brands fa-react"></i>React Native</div>
+        <div class="tchip" style="top:15%;left:25%"><i class="fa-solid fa-brain"></i>LSTM</div>
+        <div class="tchip" style="top:15%;left:75%"><i class="fa-solid fa-cube"></i>XGBoost</div>
+        <div class="tchip" style="top:50%;left:95%"><i class="fa-brands fa-python"></i>FastAPI</div>
+        <div class="tchip" style="top:85%;left:75%"><i class="fa-solid fa-leaf"></i>MongoDB</div>
+        <div class="tchip" style="top:85%;left:25%"><i class="fa-solid fa-fire-flame-curved"></i>PyTorch</div>
+        <div class="tchip" style="top:32%;left:50%"><i class="fa-solid fa-wave-square"></i>Librosa · MFCC</div>
+        <div class="tchip" style="top:68%;left:50%"><i class="fa-solid fa-square-root-variable"></i>Scikit-learn</div>
+      </div>
+
+      <div class="tech-grid reveal" style="margin-top:40px">
+        <div class="tech"><i class="fa-brands fa-github"></i>GitHub Actions</div>
+        <div class="tech"><i class="fa-brands fa-docker"></i>Docker</div>
+        <div class="tech"><i class="fa-brands fa-expo"></i>Expo</div>
+        <div class="tech"><i class="fa-solid fa-chart-column"></i>NumPy · Pandas</div>
+        <div class="tech"><i class="fa-solid fa-network-wired"></i>Axios</div>
+        <div class="tech"><i class="fa-solid fa-lock"></i>JWT Auth</div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ============================================================
+       GALLERY
+       ============================================================ -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="section-head reveal">
+        <span class="eyebrow">Inside the modules</span>
+        <h2 class="title">Four domains, <span class="hl">one mission.</span></h2>
+      </div>
+
+      <div class="gallery-wrap reveal">
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop"
+            alt="Newborn">
+          <div class="g-cap">
+            <div class="g-region">Module 01</div>
+            <div class="g-name">Growth monitoring</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?q=80&w=800&auto=format&fit=crop"
+            alt="Infant feet">
+          <div class="g-cap">
+            <div class="g-region">Module 01</div>
+            <div class="g-name">LSTM forecasting</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=800&auto=format&fit=crop"
+            alt="Infant">
+          <div class="g-cap">
+            <div class="g-region">Module 02</div>
+            <div class="g-name">ASD screening</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=800&auto=format&fit=crop"
+            alt="Mother and baby">
+          <div class="g-cap">
+            <div class="g-region">Module 02</div>
+            <div class="g-name">Q-CHAT instrument</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?q=80&w=800&auto=format&fit=crop"
+            alt="Newborn">
+          <div class="g-cap">
+            <div class="g-region">Module 03</div>
+            <div class="g-name">Cry analysis</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop"
+            alt="Mother">
+          <div class="g-cap">
+            <div class="g-region">Module 03</div>
+            <div class="g-name">Audio-visual fusion</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop"
+            alt="Mother">
+          <div class="g-cap">
+            <div class="g-region">Module 04</div>
+            <div class="g-name">Postpartum health</div>
+          </div>
+        </div>
+        <div class="gcard"><img
+            src="https://images.unsplash.com/photo-1526253038957-bce54e05968e?q=80&w=800&auto=format&fit=crop"
+            alt="Baby care">
+          <div class="g-cap">
+            <div class="g-region">Module 04</div>
+            <div class="g-name">Recovery domains</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROADMAP
+       ============================================================ -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Project Roadmap</span>
+        <h2 class="title">The journey <span class="hl-ocean">ahead.</span></h2>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q1 2026 · Complete</div>
+            <h4>Dataset curation</h4>
+            <p>Synthetic Sri Lankan longitudinal growth (Nethmi + Balita WHO references), Q-CHAT cohort, multi-modal cry
+              corpus and maternal postnatal survey data.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q2 2026 · Complete</div>
+            <h4>Model training &amp; evaluation</h4>
+            <p>LSTM forecaster, XGBoost risk model, two-stage ASD pipeline, audio-visual cry fusion and postpartum
+              ensembles trained and benchmarked.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q3 2026 · In progress</div>
+            <h4>Integration &amp; deployment</h4>
+            <p>FastAPI backend with four routers, MongoDB persistence, React Native mobile frontend with five tab
+              screens and module-specific flows.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q4 2026 · Upcoming</div>
+            <h4>Caregiver pilot</h4>
+            <p>Pilot with caregivers for real-world UX feedback, anomaly-card refinement and calibrated fusion tuning on
+              non-studio cry recordings.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q1 2027 · Planned</div>
+            <h4>Clinical validation</h4>
+            <p>Prospective validation of growth and postpartum modules on hospital-discharge cohorts. Extension to the
+              full 0–24 month range.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-date">Q2+ 2027 · Vision</div>
+            <h4>Passive &amp; wearable sensing</h4>
+            <p>Integrate passive monitoring via wearable sensors; expand cry model to ambient-noise conditions and add
+              caregiver-worn vitals input.</p>
+          </div>
+          <div class="tl-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DOCUMENTS
+       ============================================================ -->
+  <section class="section" id="documents">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Documents</span>
+        <h2 class="title">Read the <span class="hl">full story.</span></h2>
+      </div>
+
+      <div style="max-width:1080px;margin:0 auto 40px">
+        <h4
+          style="margin-bottom:14px;font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--ink-3);font-size:1rem;letter-spacing:0;text-transform:none">
+          Research papers &amp; reports</h4>
+        <div class="doc-grid">
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="doc-t">Topic Assessment Form</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-book-open"></i></div>
+            <div class="doc-t">Project Proposal Report</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="doc-t">Literature Survey</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-flask"></i></div>
+            <div class="doc-t">Status Report 01</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-flask-vial"></i></div>
+            <div class="doc-t">Status Report 02</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-trophy"></i></div>
+            <div class="doc-t">Final Report</div>
+          </a>
+          <a href="TinySteps_IEEE_v2.pdf" class="doc reveal" data-hover><span class="doc-tag">PDF</span>
+            <div class="doc-ic"><i class="fa-solid fa-tags"></i></div>
+            <div class="doc-t">IEEE Research Paper</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">GIT</span>
+            <div class="doc-ic"><i class="fa-brands fa-github"></i></div>
+            <div class="doc-t">Source Code</div>
+          </a>
+        </div>
+      </div>
+
+      <div style="max-width:1080px;margin:0 auto">
+        <h4
+          style="margin-bottom:14px;font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--ink-3);font-size:1rem;letter-spacing:0;text-transform:none">
+          Presentations</h4>
+        <div class="doc-grid pres-grid">
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PPT</span>
+            <div class="doc-ic"><i class="fa-solid fa-display"></i></div>
+            <div class="doc-t">Proposal Presentation</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PPT</span>
+            <div class="doc-ic"><i class="fa-solid fa-display"></i></div>
+            <div class="doc-t">Progress 01 Deck</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PPT</span>
+            <div class="doc-ic"><i class="fa-solid fa-display"></i></div>
+            <div class="doc-t">Progress 02 Deck</div>
+          </a>
+          <a href="#" class="doc reveal" data-hover><span class="doc-tag">PPT</span>
+            <div class="doc-ic"><i class="fa-solid fa-display"></i></div>
+            <div class="doc-t">Final Presentation</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       KEY RESULTS CTA (was Download CTA — app demos removed)
+       ============================================================ -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="download-cta reveal">
+        <div>
+          <span class="eyebrow"
+            style="color:#fff;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">Headline
+            results</span>
+          <h2>Clinically meaningful,<br>mobile deployable.</h2>
+          <p>9.05-day growth-risk lead time, macro-AUC 0.912 for ASD screening, 87.4% cry-classification accuracy and
+            AUC up to 0.891 for postpartum assessment — all using interpretable, lightweight models.</p>
+          <div class="store-btns">
+            <a href="#research" class="store-btn"><i class="fa-solid fa-book-open"></i><span><span class="st-sm">Read
+                  the</span><span class="st-lg">IEEE Paper</span></span></a>
+            <a href="#contact" class="store-btn"><i class="fa-solid fa-envelope"></i><span><span class="st-sm">Partner
+                  with</span><span class="st-lg">the Research Team</span></span></a>
+          </div>
+        </div>
+        <div class="dl-results">
+          <div class="dl-stat"><strong>0.9499</strong><small>XGBoost risk AUC</small></div>
+          <div class="dl-stat"><strong>9.05d</strong><small>Lead time</small></div>
+          <div class="dl-stat"><strong>1.63</strong><small>False alarms / infant</small></div>
+          <div class="dl-stat"><strong>0.912</strong><small>ASD macro AUC</small></div>
+          <div class="dl-stat"><strong>87.4%</strong><small>Cry accuracy</small></div>
+          <div class="dl-stat"><strong>0.891</strong><small>Perineal RF AUC</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEAM
+       ============================================================ -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Team</span>
+        <h2 class="title">People behind <span class="hl-gold">TinySteps.</span></h2>
+        <p class="lede">A multidisciplinary team of engineers and researchers working at the intersection of clinical
+          pediatrics and applied machine learning.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=500&auto=format&fit=crop"
+              alt="Supervisor"></div>
+          <div class="mate-body">
+            <span class="role">Supervisor</span>
+            <h4>Dr. Harinda Fernando</h4>
+            <p class="affil">Senior Lecturer · University of Colombo</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop"
+              alt="Co-Supervisor"></div>
+          <div class="mate-body">
+            <span class="role">Co-Supervisor</span>
+            <h4>Ms. Deepika Rathnayake</h4>
+            <p class="affil">Lecturer · University of Colombo</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop"
+              alt="Leader"></div>
+          <div class="mate-body">
+            <span class="role">Project Lead · Growth Module</span>
+            <h4>Dilshan Perera</h4>
+            <p class="affil">LSTM forecasting · XGBoost risk</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-brands fa-github"></i></a><a href="#"><i class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=500&auto=format&fit=crop"
+              alt="Member"></div>
+          <div class="mate-body">
+            <span class="role">ASD Screening Module</span>
+            <h4>Sanduni Wijesinghe</h4>
+            <p class="affil">Q-CHAT pipeline · two-stage classification</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-brands fa-github"></i></a><a href="#"><i class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=500&auto=format&fit=crop"
+              alt="Member"></div>
+          <div class="mate-body">
+            <span class="role">Cry Analysis Module</span>
+            <h4>Kavindu Rathnayake</h4>
+            <p class="affil">MFCC audio · facial CNN · fusion model</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-brands fa-github"></i></a><a href="#"><i class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+        <div class="mate reveal">
+          <div class="mate-photo"><img
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=500&auto=format&fit=crop"
+              alt="Member"></div>
+          <div class="mate-body">
+            <span class="role">Postpartum Module</span>
+            <h4>Tharushi Silva</h4>
+            <p class="affil">Ridge regression · Random Forest ensembles</p>
+            <div class="mate-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i
+                  class="fa-brands fa-github"></i></a><a href="#"><i class="fa-solid fa-envelope"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2 class="title">Let's build something <span class="hl">meaningful.</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card accent reveal reveal-l">
+          <h4>Reach the TinySteps team.</h4>
+          <p>Collaborate on clinical validation, share a dataset, request module APIs, or join the pilot as a caregiver
+            partner.</p>
+          <ul class="contact-info">
+            <li><i class="fa-solid fa-location-dot"></i>Dept. of Computer Science, University of Colombo, Sri Lanka</li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:hello@tinysteps.lk">hello@tinysteps.lk</a></li>
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+94112345678">+94 11 234 5678</a></li>
+            <li><i class="fa-solid fa-clock"></i>Mon–Fri · 09:00–18:00 IST</li>
+          </ul>
+          <div class="footer-social" style="margin-top:22px">
+            <a href="#" style="background:rgba(255,255,255,0.18)"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" style="background:rgba(255,255,255,0.18)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" style="background:rgba(255,255,255,0.18)"><i class="fa-brands fa-github"></i></a>
+            <a href="#" style="background:rgba(255,255,255,0.18)"><i class="fa-brands fa-researchgate"></i></a>
+          </div>
+        </div>
+
+        <form class="contact-card contact-form reveal reveal-r" id="contactForm">
+          <h4>Drop us a line</h4>
+          <div class="field"><input type="text" required placeholder="Your name"></div>
+          <div class="field"><input type="email" required placeholder="Email"></div>
+          <div class="field"><input type="text" placeholder="Subject"></div>
+          <div class="field"><textarea rows="4" placeholder="Tell us what you're working on"></textarea></div>
+          <button type="submit" class="btn btn-primary">Send message <span class="arrow">→</span></button>
+          <div class="form-note" id="formNote"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand"><span class="brand-mark">T</span>TinySteps</div>
+          <p class="f-about">An AI-powered infant growth monitoring platform — marrying clinical rigour with
+            lightweight, interpretable machine learning.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-researchgate"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Project</h5>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#demo">Try the AI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <p><i class="fa-solid fa-location-dot"></i>University of Colombo · Sri Lanka</p>
+          <p><i class="fa-solid fa-envelope"></i>hello@tinysteps.lk</p>
+          <p><i class="fa-solid fa-phone"></i>+94 11 234 5678</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 TinySteps · University of Colombo Research Initiative</span>
+        <span>Made with <i class="fa-solid fa-heart" style="color:#f48b7e"></i> for every tiny step</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <a href="#home" class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>
